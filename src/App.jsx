@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -16,24 +16,31 @@ function App() {
   const [viewMode, setViewMode] = useState("grid");
   const [showForm, setShowForm] = useState(false);
 
+  const [hasLoadedStudents, setHasLoadedStudents] = useState(false); 
   //load from local storage when app mounts
   useEffect(
     () => {
       try {
         console.log("Loading students from localStorage")
         const savedStudents = localStorage.getItem("students")
+        console.log("Raw data from storage:", savedStudents)
         if (savedStudents) {
+          console.log("Found data, parsing...")
           const parsedStudents = JSON.parse(savedStudents);
+          console.log("Parsed students:", parsedStudents);
           setStudents(parsedStudents);
         }
+        setHasLoadedStudents(true); //mark that we have loaded students
       } catch (error) {
         console.error("Error loading students from localStorage", error);
+        setHasLoadedStudents(true); //mark that we have loaded students
       }
     }, [] //empty dependency array means this useEffect will run only once when the component mounts
   )
 
   useEffect(
     () => {
+      if( !hasLoadedStudents) return console.log("Skipping saving to localStorage since students have not been loaded yet");
       try {
         console.log("Saving students to localStorage")
         localStorage.setItem("students", JSON.stringify(students));
@@ -44,7 +51,7 @@ function App() {
           
         }
       }
-    }, [students] //this useEffect will run every time the students state changes, cuz we have students in dependency array
+    }, [students, hasLoadedStudents] //this useEffect will run every time the students state changes, cuz we have students in dependency array
   )
 
   const handleAddStudent = (newStudent) => {
