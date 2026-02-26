@@ -1,5 +1,5 @@
 import StudentCard from "./StudentCard";
-
+import "./StudentList.css"
 
 const StudentList = ({students, searchText, filterCourse, sortBy, onToggle, onDelete, viewMode}) => {
     // Filter students based on search and course
@@ -30,52 +30,58 @@ const StudentList = ({students, searchText, filterCourse, sortBy, onToggle, onDe
         }
     )
 
-    if (sortedStudents.length === 0) {
-        return <p>No students found</p>
-    }
-
+    
     return (
-        <div>
+        <div className="student-list">
             <h2>Student Lists</h2>
-            <div>
-                {
-                //defining js logic inside jsx, we need curly braces here, cuz wihtout {} ract will think its string
-
-                viewMode === "grid" ? (
-                    <div style={{display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px"}}>
-                        {
-                            sortedStudents.map( s =>(
-                                    <StudentCard 
-                                    //here also we are using curly braces to use valid js exprns in SudentCard jsx component
-                                        key={s.id} //passing key as props to studentcard component, key is a special prop in react which is used for optimizing the rendering of list, it helps react to identify which items have changed, are added, or are removed, but we dont need to use it in student card rather react will use it internally 
-                                        student = {s}
-                                        onToggle = {() => onToggle(s.id)}
-                                        onDelete = {() => onDelete(s.id)}
-                                    />    
-                                ) 
-                                // s=>(<StudetnCard />) is implicit return, while s=>{ return (<StudentCard />) } is explicit return
-                        )
-                        }
+                {sortedStudents.length === 0 ? (
+                    <div className="empty-state">
+                        <div className="empty-state-icon">📭</div>
+                        <p>No students found</p>
                     </div>
-
                 ) : (
+
                     <div>
                         {
-                            sortedStudents.map( s =>(
-                                    <StudentCard 
-                                        key={s.id}
-                                        student = {s}
-                                        onToggle = {() => onToggle(s.id)}
-                                        onDelete = {() => onDelete(s.id)}
-                                    />    
-                                ) 
+                        //defining js logic inside jsx, we need curly braces here, cuz wihtout {} ract will think its string
+
+                        viewMode === "grid" ? (
+                            <div className={`student-list ${viewMode}`}>
+                                {
+                                    sortedStudents.map( s =>(
+                                            <StudentCard 
+                                            //here also we are using curly braces to use valid js exprns in SudentCard jsx component
+                                                key={s.id} //passing key as props to studentcard component, key is a special prop in react which is used for optimizing the rendering of list, it helps react to identify which items have changed, are added, or are removed, but we dont need to use it in student card rather react will use it internally 
+                                                student = {s}
+                                                onToggle = {() => onToggle(s.id)}
+                                                onDelete = {() => onDelete(s.id)}
+                                            />    
+                                        ) 
+                                        // s=>(<StudetnCard />) is implicit return, while s=>{ return (<StudentCard />) } is explicit return
+                                )
+                                }
+                            </div>
+
+                        ) : (
+                            <div className={`student-list ${viewMode}`}>
+                                {
+                                    sortedStudents.map( s =>(
+                                            <StudentCard 
+                                                key={s.id}
+                                                student = {s}
+                                                onToggle = {() => onToggle(s.id)}
+                                                onDelete = {() => onDelete(s.id)}
+                                            />    
+                                        ) 
+                                )
+                                }
+                                
+                            </div>
                         )
                         }
-                        
                     </div>
-                )
+                ) 
                 }
-            </div>
         </div>
     )
 

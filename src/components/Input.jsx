@@ -1,10 +1,13 @@
-const Input = ({label , value, onChange, placeholder, type="text"}) => {
+import "./Input.css"
+
+const Input = ({ label, name, value, onChange, placeholder, type = "text" }) => {
     return (
-        <div>
-            <label>{label}</label>
-            <input 
+        <div className="input-group">
+            {label && <label htmlFor={name}>{label}</label>}
+            <input
+                id={name}
                 type={type}
-                value = {value}
+                value={value}
                 onChange={onChange}
                 placeholder={placeholder}
             />

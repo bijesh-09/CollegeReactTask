@@ -6,6 +6,7 @@ import Header from './components/Header'
 import Toolbar from './components/Toolbar'
 import StudentList from './components/StudentList'
 import StudentForm from './components/StudentForm'
+import Button from './components/Button'
 
 function App() {
   //we should always use component with lowest common state, appjsx has the lowest common state which is used and passed down to other child components, and the changes made by child is reflected upon parent
@@ -51,7 +52,7 @@ function App() {
           
         }
       }
-    }, [students, hasLoadedStudents] //this useEffect will run every time the students state changes, cuz we have students in dependency array
+    }, [students, hasLoadedStudents] //this useEffect will run every time the students state and hasloadedStudents state change, cuz we have students and hasloadedstudents in dependency array
   )
 
   const handleAddStudent = (newStudent) => {
@@ -69,7 +70,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='app-container'>
       <Header />
       <Toolbar
         searchText={searchText}
@@ -82,15 +83,18 @@ function App() {
         setViewMode={setViewMode}
       />
 
-      <button onClick={()=>setShowForm(true)}>Add student</button>
+      <Button onClick={()=>setShowForm(true)}>Add student</Button>
 
       {
         showForm && (
-          <div>
-            <button onClick={()=>setShowForm(false)} className="form-close-btn" >
-              ✕
-            </button>
+          <div className='form-popup'>
             <StudentForm onAddStudent={handleAddStudent}/>
+            <div className='form-popup-close-btn'>
+              <Button onClick={()=>setShowForm(false)} >
+                ✕
+              </Button>
+
+            </div>
           </div>
         )
       }

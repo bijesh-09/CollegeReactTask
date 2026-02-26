@@ -1,6 +1,8 @@
 import Input from "./Input";
+import Select from "./Select";
 import { useState } from "react";
 import Button from "./Button";
+import "./StudentForm.css"
 
 const StudentForm = ({ onAddStudent }) => {
     const [name, setName] = useState("");
@@ -27,42 +29,52 @@ const StudentForm = ({ onAddStudent }) => {
     return (
 
         // onSubmit event triggered by the form when the button of type Submit is clicked
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="student-form">
             <h2>Add a Student</h2>
 
-            <Input
-                label="Student Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)} //onchaange event fires everytime a letter is typed in the input box
-                placeholder="Enter student name"
-            />
+            <div className="form-actions">
+                <Input
+                    label="Student Name"
+                    name="studentName"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)} //onchaange event fires everytime a letter is typed in the input box
+                    placeholder="Enter student name"
+                />
 
-            <div>
-                <label>Course</label>
-                <select value={course} onChange={(e) => setCourse(e.target.value)}>
-                    <option value="BSc CSIT">BSc CSIT</option>
-                    <option value="BCA">BCA</option>
-                </select>
+                <Select
+                    label="Course"
+                    name="course"
+                    value={course}
+                    onChange={(e) => setCourse(e.target.value)}
+                    options={[
+                        { value: "BSc CSIT", label: "BSc CSIT" },
+                        { value: "BCA", label: "BCA" }
+                    ]}
+                />
+
+                <Select
+                    label="Grade"
+                    name="grade"
+                    value={grade}
+                    onChange={(e) => setGrade(e.target.value)}
+                    options={[
+                        { value: "A+", label: "A+" },
+                        { value: "A", label: "A" },
+                        { value: "B+", label: "B+" },
+                        { value: "B", label: "B" },
+                        { value: "C+", label: "C+" },
+                        { value: "C", label: "C" },
+                        { value: "D", label: "D" },
+                        { value: "NG", label: "NG" }
+                    ]}
+                />
+
+                {/* type = "submit" or type = "Submit" are same cuz attributes in js are case insensitive*/}
+                <Button type="Submit">Add Student</Button>
+                {/* type and children props are passed to Button component, other props have default values in Buttonjsx */}
+                {/* buttons inside form tag are by default submit type */}
+
             </div>
-
-            <div>
-                <label>Grade</label>
-                <select value={grade} onChange={(e) => setGrade(e.target.value)}>
-                    <option value="A+">A+</option>
-                    <option value="A">A</option>
-                    <option value="B+">B+</option>
-                    <option value="B">B</option>
-                    <option value="C+">C+</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-                    <option value="NG">NG</option>
-                </select>
-            </div>
-
-            {/* type = "submit" or type = "Submit" are same cuz attributes in js are case insensitive*/}
-            <Button type="Submit">Add Student</Button>
-            {/* type and children props are passed to Button component, other props have default values in Buttonjsx */}
-            {/* buttons inside form tag are by default submit type */}
         </form>
     )
 }

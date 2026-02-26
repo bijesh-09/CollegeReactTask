@@ -1,9 +1,9 @@
 import Badge from "./Badge";
 import Button from "./Button";
-
+import "./StudentCard.css"
 const StudentCard = ({student, onToggle, onDelete}) => {
     return (
-        <div>
+        <div className="student-card">
             <h3>{student.name}</h3>
             <p>Course: {student.course} </p>
             <p>Grade: {student.grade} </p>
@@ -15,6 +15,8 @@ const StudentCard = ({student, onToggle, onDelete}) => {
                 label={student.isPresent ? "Present" : "Absent"}
                 type = {student.isPresent ? "success" : "warning"}
             />
+            <div className="card-actions">
+
             {/* only js exprns require {} the strings like variant = "primary" dont need {} */}
             {/* Here Button is the component not actual button tag */}
             <Button onClick={onToggle} variant="primary" > 
@@ -25,6 +27,7 @@ const StudentCard = ({student, onToggle, onDelete}) => {
             <Button onClick={onDelete} variant = "danger">
                 Delete Student
             </Button>
+            </div>
 
 
 
