@@ -1,0 +1,33 @@
+.app-container{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.form-popup{
+    position: fixed;/*fixed ensures that when pop is opened  , the pop remain fixed to the screen even if user scrolls, putting absolute will only cover the 1st screen viewport and on scrolling it gets halfway cut*/
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /*ensures that the pop up's depth is the most forward, though other later elements or components appear in the website, zindex works only when position absolute or relative or fixed*/
+    backdrop-filter: blur(5px);
+}
+
+.form-popup-close-btn{
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+}
+
+@media (max-width: 768px){
+    .app-container{
+        padding: var(--spacing-sm);
+    }
+}

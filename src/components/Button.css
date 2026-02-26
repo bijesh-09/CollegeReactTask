@@ -1,0 +1,53 @@
+.btn{
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: 2px solid transparent;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.95rem;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary{
+    background-color: var(--neon-blue);
+    color: var(--bg-primary);
+    box-shadow: 0 0 15px rgba(0,212,255,0.4);
+    border-color: var(--neon-blue);
+}
+
+.btn-primary:hover{
+    box-shadow: 0 0 30px rgba(0,212,255,0.8),
+                inset 0 0 10px rgba(255, 255, 255, 0.2);/*inset gives the inner glow to the btn from edges like a rim*/
+    transform: translateY(-2px);
+    background: var(--neon-blue-dark);
+}
+
+.btn-danger{
+    background: var(--neon-red);
+    color: var(--text-primary);
+    box-shadow: 0 0 15px rgba(255, 0,110, 0.4);
+    border-color: var(--neon-red);
+}
+
+.btn-danger:hover{
+    box-shadow: 0 0 30px rgba(255, 0,110, 0.8),
+                inset 0 0 10px rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+@media (max-width: 768px) {
+  .btn {
+    padding: var(--spacing-xs) var(--spacing-md);  /* Smaller padding */
+    font-size: 0.85rem;
+    width: 100%;  /* Full width on mobile */
+  }
+}   

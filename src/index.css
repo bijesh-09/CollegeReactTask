@@ -1,0 +1,61 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    /*bg dark mode color variables*/
+    --bg-primary: #0a0e27; /*very dark blue-black*/
+    --bg-secondary: #1a1f3a; /*dark blue*/
+    --bg-tertiary: #252b48; /*slightly lighter dark-blue*/
+
+    /*neon colors variables*/
+    --neon-blue: #00d4ff; /*electric cyan*/
+    --neon-blue-dark: #0099cc; /*darker blue for depth*/
+    --neon-green: #00ff88; /*electric green*/
+    --neon-purple: #d946ff; /*electric purple*/
+    --neon-red: #ff006e; /*electric red or purple*/
+
+    /*text colors*/
+    --text-primary: #e0e0e0 ;
+    --text-secondary: #a0a0a0;
+    --text-success: #00ff88;
+    --text-warning: #ff9500;
+    --text-danger: #ff006e;
+
+    /*spacing scale*/
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /*transitions*/
+    --transition: all 0.3s ease;
+}
+
+body{
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar{
+    width: 8px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb{
+    background: var(--neon-blue);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: var(--neon-purple);
+}

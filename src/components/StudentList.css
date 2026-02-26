@@ -1,0 +1,43 @@
+.student-list{
+    margin-top: var(--spacing-xl);
+}
+
+.empty-state{
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: var(--bg-secondary);
+    border: 2px dashed var(--neon-blue);
+    border-radius: 12px;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-top: var(--spacing-xl);
+}
+
+.empty-state-icon{
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+    opacity: 0.6;
+}
+
+/*grid layout*/
+.student-list.grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+/*list layout*/
+.student-list.list{
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+/*responsive for smaller screen*/
+
+@media (max-width: 768px){
+    .student-list.grid{
+        grid-template-columns: 1fr;
+    }
+
+}
